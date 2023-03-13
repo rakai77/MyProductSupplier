@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.myproductsupplier.databinding.FragmentProfileBinding
 import com.example.myproductsupplier.ui.auth.AuthActivity
 import com.example.myproductsupplier.ui.auth.AuthViewModel
+import com.example.myproductsupplier.ui.profile.addproduct.AddProductActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getDataUser()
+        setupAction()
         logout()
     }
 
@@ -73,6 +75,14 @@ class ProfileFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             activity?.finish()
+        }
+    }
+
+    private fun setupAction() {
+        binding.apply {
+            tflAddProduct.setOnClickListener {
+                startActivity(Intent(requireActivity(), AddProductActivity::class.java))
+            }
         }
     }
 

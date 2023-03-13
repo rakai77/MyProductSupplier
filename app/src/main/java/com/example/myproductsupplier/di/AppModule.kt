@@ -9,6 +9,8 @@ import com.example.myproductsupplier.data.local.preference.dataStore
 import com.example.myproductsupplier.data.remote.api.ApiService
 import com.example.myproductsupplier.data.repository.authentication.AuthRepository
 import com.example.myproductsupplier.data.repository.authentication.AuthRepositoryImp
+import com.example.myproductsupplier.data.repository.product.ProductRepository
+import com.example.myproductsupplier.data.repository.product.ProductRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -76,6 +78,12 @@ object AppModule {
     @Provides
     fun provideAuthRepository(apiService: ApiService) : AuthRepository {
         return AuthRepositoryImp(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductRepository(apiService: ApiService) : ProductRepository {
+        return ProductRepositoryImp(apiService)
     }
 
     @Singleton

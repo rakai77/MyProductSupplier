@@ -15,4 +15,13 @@
     <string name="add_product">Add Product</string>
     <string name="add_supplier">Add Supplier</string>
     <string name="logout">Logout</string>
+    <string name="product">Product</string>
+    <string name="name_product">Name Product</string>
+    <string name="price_product">Price</string>
+    <string name="stock_product">Stock</string>
+    <string name="supplier">Supplier</string>
+    <string name="name_supplier">Name Supplier</string>
+    <string name="address_supplier">Address</string>
+    <string name="telp_supplier">Phone Number</string>
+    <string name="btn_save">Save</string>
 </resources>
