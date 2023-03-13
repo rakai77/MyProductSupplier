@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyProductSupplier</string>
+    <string name="title_home">Home</string>
+    <string name="title_supplier">Supplier</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="offer_signup">Don\'t have an account?</string>
+    <string name="offer_login">Already have an account?</string>
+    <string name="btn_signup">Signup</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="add_product">Add Product</string>
+    <string name="add_supplier">Add Supplier</string>
+    <string name="logout">Logout</string>
+</resources>
