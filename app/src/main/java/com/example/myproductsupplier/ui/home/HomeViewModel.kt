@@ -1,13 +1,17 @@
 package com.example.myproductsupplier.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import com.example.myproductsupplier.data.local.preference.UserPreference
+import com.example.myproductsupplier.data.repository.product.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repo: ProductRepository, pref: UserPreference) : ViewModel(){
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val token = pref.getToken()
+
+    fun getALlStory(token: String) = repo.getListProduct(token).cachedIn(viewModelScope)
 }
