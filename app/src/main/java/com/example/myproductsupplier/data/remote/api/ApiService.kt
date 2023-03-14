@@ -1,12 +1,10 @@
 package com.example.myproductsupplier.data.remote.api
 
 import com.example.myproductsupplier.data.local.entity.AddProductEntity
+import com.example.myproductsupplier.data.local.entity.AddSupplierEntity
 import com.example.myproductsupplier.data.local.entity.LoginEntity
 import com.example.myproductsupplier.data.local.entity.RegisterEntity
-import com.example.myproductsupplier.data.remote.response.AddProductResponse
-import com.example.myproductsupplier.data.remote.response.GetProductResponse
-import com.example.myproductsupplier.data.remote.response.LoginResponse
-import com.example.myproductsupplier.data.remote.response.RegisterResponse
+import com.example.myproductsupplier.data.remote.response.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -37,4 +35,11 @@ interface ApiService {
         @Query("limit") limit: Int? = null,
         @Query("offset") offset: Int? = null
     ) : GetProductResponse
+
+
+    @POST("/supplier/create")
+    suspend fun addSupplier(
+        @Header("Authorization") token: String,
+        @Body addSupplierEntity: AddSupplierEntity
+    ) : AddSupplierResponse
 }

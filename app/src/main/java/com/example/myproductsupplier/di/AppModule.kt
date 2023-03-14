@@ -11,6 +11,8 @@ import com.example.myproductsupplier.data.repository.authentication.AuthReposito
 import com.example.myproductsupplier.data.repository.authentication.AuthRepositoryImp
 import com.example.myproductsupplier.data.repository.product.ProductRepository
 import com.example.myproductsupplier.data.repository.product.ProductRepositoryImp
+import com.example.myproductsupplier.data.repository.supplier.SupplierRepository
+import com.example.myproductsupplier.data.repository.supplier.SupplierRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -84,6 +86,12 @@ object AppModule {
     @Provides
     fun provideProductRepository(apiService: ApiService) : ProductRepository {
         return ProductRepositoryImp(apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSupplierRepository(apiService: ApiService) : SupplierRepository {
+        return SupplierRepositoryImp(apiService)
     }
 
     @Singleton

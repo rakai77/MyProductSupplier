@@ -12,10 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.myproductsupplier.data.local.entity.AddSupplierEntity
 import com.example.myproductsupplier.databinding.FragmentProfileBinding
 import com.example.myproductsupplier.ui.auth.AuthActivity
 import com.example.myproductsupplier.ui.auth.AuthViewModel
 import com.example.myproductsupplier.ui.profile.addproduct.AddProductActivity
+import com.example.myproductsupplier.ui.profile.addsupplier.AddSupplierActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -82,6 +84,9 @@ class ProfileFragment : Fragment() {
         binding.apply {
             tflAddProduct.setOnClickListener {
                 startActivity(Intent(requireActivity(), AddProductActivity::class.java))
+            }
+            tflAddSupplier.setOnClickListener {
+                startActivity(Intent(requireActivity(), AddSupplierActivity::class.java))
             }
         }
     }
