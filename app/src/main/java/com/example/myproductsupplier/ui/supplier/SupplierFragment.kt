@@ -14,9 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproductsupplier.databinding.FragmentSupplierBinding
-import com.example.myproductsupplier.ui.home.HomeViewModel
-import com.example.myproductsupplier.ui.home.LoadingStateAdapter
-import com.example.myproductsupplier.ui.home.ProductPagingAdapter
+import com.example.myproductsupplier.ui.LoadingStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

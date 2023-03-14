@@ -10,6 +10,7 @@ import com.example.myproductsupplier.data.remote.ProductPagingSource.Companion.T
 import com.example.myproductsupplier.data.remote.api.ApiService
 import com.example.myproductsupplier.data.remote.response.AddProductResponse
 import com.example.myproductsupplier.data.remote.response.DataItem
+import com.example.myproductsupplier.data.remote.response.DetailProductResponse
 import com.example.myproductsupplier.data.remote.response.GetProductResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -51,6 +52,28 @@ class ProductRepositoryImp @Inject constructor(private val apiService: ApiServic
             ),
             pagingSourceFactory = { ProductPagingSource(token = token, apiService = apiService) }
         ).flow
+    }
+
+    override fun getDetailProduct(token: String, id: Int): Flow<Resource<DetailProductResponse>> = flow {
+        emit(Resource.Loading)
+        try {
+            val result = apiService.getDetailProduct(token, id)
+            emit(Resource.Success(result))
+        } catch (t: Throwable) {
+            if (t is HttpException) {
+                when (t.code()) {
+                    400 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    401 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    403 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    404 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    422 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    500 -> emit(Resource.Error(t.message(), t.response()?.errorBody()))
+                    else -> emit(Resource.Error(null, null))
+                }
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage, null))
+        }
     }
 
 }

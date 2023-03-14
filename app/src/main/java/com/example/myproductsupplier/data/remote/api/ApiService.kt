@@ -9,6 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -48,4 +49,11 @@ interface ApiService {
         @Query("limit") limit: Int? = null,
         @Query("offset") offset: Int? = null
     ) : GetSupplierResponse
+
+    @GET("/barang/find-by-id/{id}")
+    suspend fun getDetailProduct(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ) : DetailProductResponse
+
 }

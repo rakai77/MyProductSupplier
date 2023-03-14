@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myproductsupplier.data.remote.response.DataItem
 import com.example.myproductsupplier.databinding.ListItemProductBinding
 
-class ProductPagingAdapter : PagingDataAdapter<DataItem, ProductPagingAdapter.ProductViewHolder>(DIFF_CALLBACK){
+class ProductPagingAdapter(private val onClickItem: (Int) -> Unit) : PagingDataAdapter<DataItem, ProductPagingAdapter.ProductViewHolder>(DIFF_CALLBACK){
 
     inner class ProductViewHolder(private val binding: ListItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: DataItem) {
@@ -16,6 +16,10 @@ class ProductPagingAdapter : PagingDataAdapter<DataItem, ProductPagingAdapter.Pr
                 tvProductName.text = data.namaBarang
                 tvPrice.text = data.harga.toString()
                 tvStock.text = data.stok.toString()
+
+                itemView.setOnClickListener {
+                    onClickItem.invoke(data.id)
+                }
             }
         }
     }

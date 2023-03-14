@@ -50,7 +50,7 @@ data class DataItem(
 	val supplier: SupplierData? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("namaBarang")
 	val namaBarang: String? = null,

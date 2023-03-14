@@ -1,5 +1,6 @@
 package com.example.myproductsupplier.ui.home
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -14,8 +15,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproductsupplier.databinding.FragmentHomeBinding
+import com.example.myproductsupplier.ui.LoadingStateAdapter
+import com.example.myproductsupplier.ui.home.detail.DetailProductActivity
+import com.example.myproductsupplier.ui.home.detail.DetailProductActivity.Companion.PRODUCT_ID
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -57,7 +60,13 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.apply {
-            val adapter = ProductPagingAdapter()
+            val adapter = ProductPagingAdapter(
+                onClickItem = {
+                    val intent = Intent(requireActivity(), DetailProductActivity::class.java)
+                    intent.putExtra(PRODUCT_ID, it)
+                    startActivity(intent)
+                }
+            )
             rvProduct.adapter = adapter.withLoadStateFooter(
                 footer = LoadingStateAdapter {
                     adapter.retry()

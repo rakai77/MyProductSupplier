@@ -1,4 +1,4 @@
-package com.example.myproductsupplier.ui.home
+package com.example.myproductsupplier.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myproductsupplier.databinding.ListItemProductBinding
 import com.example.myproductsupplier.databinding.LoadingStatePagingBinding
 
 class LoadingStateAdapter (private val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadViewHolder>(){
