@@ -13,5 +13,5 @@ class HomeViewModel @Inject constructor(private val repo: ProductRepository, pre
 
     val token = pref.getToken()
 
-    fun getALlStory(token: String) = repo.getListProduct(token).cachedIn(viewModelScope)
+    fun getListProduct(token: String) = repo.getListProduct(token).cachedIn(viewModelScope)
 }

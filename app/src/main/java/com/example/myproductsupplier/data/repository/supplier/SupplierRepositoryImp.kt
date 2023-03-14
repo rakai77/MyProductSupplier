@@ -1,9 +1,16 @@
 package com.example.myproductsupplier.data.repository.supplier
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.myproductsupplier.data.Resource
 import com.example.myproductsupplier.data.local.entity.AddSupplierEntity
+import com.example.myproductsupplier.data.remote.ProductPagingSource
+import com.example.myproductsupplier.data.remote.SupplierPagingSource
 import com.example.myproductsupplier.data.remote.api.ApiService
 import com.example.myproductsupplier.data.remote.response.AddSupplierResponse
+import com.example.myproductsupplier.data.remote.response.DataItemSupplier
+import com.example.myproductsupplier.data.remote.response.GetSupplierResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -31,5 +38,15 @@ class SupplierRepositoryImp @Inject constructor(private val apiService: ApiServi
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage, null))
         }
+    }
+
+    override fun getListSupplier(token: String): Flow<PagingData<DataItemSupplier>> {
+        return Pager(
+            config = PagingConfig(
+                enablePlaceholders = false,
+                pageSize = 20,
+            ),
+            pagingSourceFactory = { SupplierPagingSource(token = token, apiService = apiService) }
+        ).flow
     }
 }

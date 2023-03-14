@@ -69,7 +69,9 @@ class HomeFragment : Fragment() {
                 binding.rvProduct.layoutManager = LinearLayoutManager(requireContext())
             }
             lifecycleScope.launch {
-                viewModel.getALlStory("Bearer $token").collectLatest { adapter.submitData(viewLifecycleOwner.lifecycle, it) }
+                lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.getListProduct("Bearer $token").collectLatest { adapter.submitData(viewLifecycleOwner.lifecycle, it) }
+                }
             }
         }
     }

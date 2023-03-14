@@ -36,10 +36,16 @@ interface ApiService {
         @Query("offset") offset: Int? = null
     ) : GetProductResponse
 
-
     @POST("/supplier/create")
     suspend fun addSupplier(
         @Header("Authorization") token: String,
         @Body addSupplierEntity: AddSupplierEntity
     ) : AddSupplierResponse
+
+    @GET("/supplier/find-all")
+    suspend fun getListSupplier(
+        @Header("Authorization") token: String,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
+    ) : GetSupplierResponse
 }
